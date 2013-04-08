@@ -9,7 +9,7 @@ import java.util.ListIterator;
  */
 public class MergeSort 
 {
-    private static final int THRESHHOLD = 4;
+    private static final int THRESHHOLD = 2;
     public static void main(String[] args)
     {
         LinkedList<Integer> list = new LinkedList<>();
@@ -17,6 +17,8 @@ public class MergeSort
         {
             list.add((int)(Math.random()*1000));
         }
+        printList(list);
+        mergeSort(list);
         printList(list);
     }
     private static void printList(LinkedList list)
@@ -35,9 +37,14 @@ public class MergeSort
     {
         Integer[] array = new Integer[list.size()];
         list.toArray(array);
-        if(array.length < THRESHHOLD)
+        if(array.length <= THRESHHOLD)
         {
-            //selectionsort
+            if(array[end] > array[start])
+            {
+                Integer temp = array[end];
+                array[end] = array[start];
+                array[start] = temp;
+            }
         }
         int start = 0;
         int end = array.length-1;
@@ -49,7 +56,12 @@ public class MergeSort
     {
         if((end-start) <= THRESHHOLD)
         {
-            //insertion sort
+            if(array[end] > array[start])
+            {
+                Integer temp = array[end];
+                array[end] = array[start];
+                array[start] = temp;
+            }
         }
         mergeSortInternal(array, start, end/2);
         mergeSortInternal(array, end/2+1, end);
@@ -57,6 +69,14 @@ public class MergeSort
     }
     private static void merge(Integer[] array, int start1, int end1, int start2, int end2)
     {
-        //merge
+        Integer[] tempArray = new Integer[end1-start1];
+        for(int index = start1; index <= end1; index++)
+        {
+            tempArray[start1-index] = array[index];
+        }
+        for(int index=0; index <= (end1-start1); index++)
+        {
+            
+        }
     }
 }
