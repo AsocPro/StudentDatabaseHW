@@ -1,3 +1,12 @@
+/**
+ * Name: Zachary Pratt Gibbs
+ * Assignment: MergeSort
+ * File: MergeSort.java
+ * Date: April 8, 2013
+ * 
+ * Description: This file makes a linked list of 1000 random Integers preforms 
+ *      a merge sort on the list.
+ */
 package MergeSort;
 
 import java.util.LinkedList;
@@ -10,6 +19,7 @@ import java.util.ListIterator;
 public class MergeSort 
 {
     private static final int THRESHHOLD = 2;
+    //The threshhold of 2 was chosen for programming ease.
     public static void main(String[] args)
     {
         LinkedList<Integer> list = new LinkedList<>();
@@ -51,6 +61,12 @@ public class MergeSort
         mergeSortInternal(array, start, end/2);
         mergeSortInternal(array, end/2+1, end);
         merge(array, start, end/2,end/2+1, end);
+        LinkedList<Integer> newList = LinkedList<>();
+        for(int index = 0; index < array.length)
+        {
+            newList.addLast(array[index]);
+        }
+        return newList;
     }
     private static void mergeSortInternal(Integer[] array, int start, int end)
     {
@@ -74,9 +90,22 @@ public class MergeSort
         {
             tempArray[start1-index] = array[index];
         }
-        for(int index=0; index <= (end1-start1); index++)
+        int mergePointer = 0;
+        int arrayPointer = 0;
+        for(int index=0; index <= array.length; index++)
         {
-            
+            if(array[index] < array[start2+arrayPointer])
+            {
+                array[start1+mergePointer] = array[index];
+                mergePointer;
+            }
+            else
+            {
+                array[start1+mergePointer] = array[start2+arrayPointer];
+                index--;
+                arrayPointer++;
+                mergePointer;
+            }
         }
     }
 }
